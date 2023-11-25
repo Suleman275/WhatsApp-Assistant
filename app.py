@@ -1,14 +1,20 @@
 from dotenv import load_dotenv
+import google.generativeai as palm
 import os
 
-# Load variables from .env file
 load_dotenv()
 
-# Accessing environment variable
-my_variable_value = os.getenv('MY_VARIABLE')
+palm.configure(api_key=os.environ['palmkey'])
 
-# Checking if the variable exists
-if my_variable_value is not None:
-    print(f"Value of MY_VARIABLE: {my_variable_value}")
-else:
-    print("MY_VARIABLE is not set.")
+# Create a new conversation
+response = palm.chat(messages='Hello')
+print (response.last)
+
+prompt = input("Enter yoru reply")
+
+print(prompt)
+while prompt != "end":
+   response = response.reply(prompt)
+   print(response.last)
+   #print(response.messages)
+   prompt = input("Enter yoru reply")
