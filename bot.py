@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 # Define a route to handle incoming requests
 @app.route('/bot', methods=['POST'])
-def chatgpt():
+def bot():
     incoming_message = request.values.get('Body', '').lower()
     print("Message: ", incoming_message)
     
